@@ -32,7 +32,7 @@ jobs:
 
       - name: Git tag and push
         run: |
-          git config --global user.email "bot@bodegacatsgc.gg"
+          git config --global user.email "bodegacatsgc@gmail.com"
           git config --global user.name "GitHub Actions Bot"
           git add CHANGELOG.md
           git commit -m "docs(CHANGELOG): update for v${{ steps.version.outputs.version }}"
