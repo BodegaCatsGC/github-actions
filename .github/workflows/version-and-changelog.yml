@@ -37,7 +37,23 @@ jobs:
           TYPE: 'feat:Features,fix:Bug Fixes,docs:Documentation,refactor:Refactors,perf:Performance Improvements, chore: chores'
           REGENERATE_COUNT: -1
           DEFAULT_SCOPE: 'general'
-
+        
+      - name: Calculate next semantic version
+        id: version
+        
+        uses: PaulHatch/semantic-version@v5.4.0
+        with:
+          tag_prefix: "v"
+          major_pattern: "(MAJOR)"
+          major_regexp_flags: ""
+          minor_pattern: "(MINOR)"
+          minor_regexp_flags: ""
+          version_format: "${major}.${minor}.${patch}-prerelease${increment}"
+          bump_each_commit: true
+          bump_each_commit_patch_pattern: ""
+          search_commit_body: true
+          enable_prerelease_mode: true
+      
       - name: Git tag and push
         run: |
           git config --global user.email "bodegacatsgc@gmail.com"
