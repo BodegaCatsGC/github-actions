@@ -2,7 +2,7 @@ name: version-and-changelog
 
 on:
   - push 
-  - workflow_dispatch
+  - workflow_call
 
 jobs:
   version-and-changelog:
