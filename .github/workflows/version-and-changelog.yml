@@ -11,6 +11,15 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      
+      - name: Update CHANGELOG.md
+        uses: BobAnkh/auto-generate-changelog@v1.2.5
+        with:
+          REPO_NAME: ${{ github.repository }}
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PATH: 'docs/CHANGELOG.md'
+          COMMIT_MESSAGE: 'docs(CHANGELOG): update for v${{ steps.version.outputs.version }}'
+          TYPE: 'feat:Features,fix:Bug Fixes,docs:Documentation,refactor:Refactors,perf:Performance Improvements, chore: chores'
 
       - name: Calculate next semantic version
         id: version
@@ -27,15 +36,6 @@ jobs:
           search_commit_body: true
           enable_prerelease_mode: true
       
-      - name: Update CHANGELOG.md
-        uses: BobAnkh/auto-generate-changelog@v1.2.5
-        with:
-          REPO_NAME: ${{ github.repository }}
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PATH: 'docs/CHANGELOG.md'
-          COMMIT_MESSAGE: 'docs(CHANGELOG): update for v${{ steps.version.outputs.version }}'
-          TYPE: 'feat:Features,fix:Bug Fixes,docs:Documentation,refactor:Refactors,perf:Performance Improvements'
-
       - name: Git tag and push
         run: |
           git config --global user.email "bodegacatsgc@gmail.com"
