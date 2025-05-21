@@ -12,7 +12,7 @@ jobs:
           fetch-depth: -1
           
       - name: Calculate next semantic version
-        id: version
+        id: version 1
         
         uses: PaulHatch/semantic-version@v5.4.0
         with:
@@ -39,7 +39,7 @@ jobs:
           DEFAULT_SCOPE: 'general'
         
       - name: Calculate next semantic version
-        id: version
+        id: version 2
         
         uses: PaulHatch/semantic-version@v5.4.0
         with:
@@ -51,7 +51,7 @@ jobs:
           version_format: "${major}.${minor}.${patch}-prerelease${increment}"
           bump_each_commit: true
           bump_each_commit_patch_pattern: ""
-          search_commit_body: true
+          search_commit_body: false
           enable_prerelease_mode: true
       
       - name: Git tag and push
